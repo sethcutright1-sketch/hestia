@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "paths": { "@/*": ["./*"] }
+  },
+  "include": ["*.ts", "routes/**/*.ts", "assistant/**/*.ts", "src/**/*.ts", "src/**/*.tsx", "nutrition/**/*.ts", "scripts/import-usda-generic.ts", "tests/**/*.ts"]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "household-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "start": "npm run build && node dist/server.cjs",
+    "lint": "tsc --noEmit",
+    "eval": "tsx scripts/eval-assistant.ts",
+    "import:usda": "tsx scripts/import-usda-generic.ts",
+    "import:loseit": "tsx scripts/import-loseit.ts",
+    "test": "node --import tsx --test \"tests/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "@zxing/browser": "^0.2.1",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "express-session": "^1.19.0",
+    "fflate": "^0.8.3",
+    "lucide-react": "^0.546.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "vite": "^6.2.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^4.17.21",
+    "@types/express-session": "^1.19.0",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2"
+  }
+}

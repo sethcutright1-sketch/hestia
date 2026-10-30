@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Class-based dark mode (budget's settings toggle sets `.dark` on <html>,
+   persisted under the "household_dark" key -- see index.html's boot script
+   and Budget.tsx). Grocery/pantry/meal-plan's existing dark: classes keep
+   working unchanged since this is additive to the variant, not a new one. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
+
+/* Hides the scrollbar on strips that scroll horizontally (the header nav and the
+   Budget tab strip) while leaving them scrollable. Budget.tsx has referenced this
+   class since it was written, but it was never actually defined -- so on phones,
+   where the strip is exactly the thing that needs to scroll, it has been showing a
+   scrollbar across the tabs the whole time. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

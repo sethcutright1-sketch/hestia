@@ -1,0 +1,23 @@
+# Template for cloudflared's config file -- see README.md's "Reaching it from the public
+# internet (Cloudflare Tunnel)" section for the full walkthrough this belongs to. Copy this
+# to a real path on the machine running the live app (e.g. C:\cloudflared\config.yml) and
+# fill in the two placeholders below with what `cloudflared tunnel create household-app`
+# and your own domain gave you. Never commit the filled-in version if the tunnel id or
+# hostname should stay private -- neither is a secret on its own, but there's no reason to
+# publish either.
+#
+# Write this with PowerShell (Set-Content), not Notepad -- Notepad silently saves as
+# config.yml.txt unless you explicitly pick "All Files" in the save dialog.
+
+tunnel: <tunnel-id-from-cloudflared-tunnel-create>
+credentials-file: C:\Users\<you>\.cloudflared\<tunnel-id>.json
+
+ingress:
+  # Same port the always-on server already binds (see server.ts) -- cloudflared connects
+  # to it over 127.0.0.1, which is exactly the connection server.ts's
+  # `app.set("trust proxy", "loopback")` is written to trust.
+  - hostname: <your-subdomain-or-domain>
+    service: http://localhost:3200
+  # Required by cloudflared: a catch-all for any hostname this tunnel is asked to serve
+  # that isn't the one configured above.
+  - service: http_status:404
